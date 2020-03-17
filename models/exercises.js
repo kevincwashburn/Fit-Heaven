@@ -25,8 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(20),
         allowNull: false
       }
-    },
-    {}
+    };
   );
   Exercises.associate = function() {
     // associations can be defined here

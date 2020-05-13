@@ -2,7 +2,7 @@ $(document).ready(function() {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   const getExercises = () => {
-    console.log("get the exercise!");
+    // console.log("get the exercise!");
     $.get("/api/findExercises").then(function(data) {
       console.log(data, "<=====");
       if (data) {
@@ -33,7 +33,7 @@ $(document).ready(function() {
 
   $.get("/api/user_data").then(function(data) {
     let username = data.email;
-    console.log(username);
+    // console.log(username);
     let realusername = username.substr(0, username.indexOf("@"));
     $(".username").text(realusername);
     $("#gender").text(data.gender);

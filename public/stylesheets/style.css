@@ -66,3 +66,6 @@ p{
   color:white;
 }
 
+.results, #gender, #weight, #fitnessLevel {
+  color: #30323D;
+}

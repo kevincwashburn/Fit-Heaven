@@ -10,19 +10,19 @@ $(document).ready(function() {
           const newRow = $("<div>").addClass("row");
           newRow.html(`
             <div class="col">
-              <p class="text-dark">${exercisez.name}</p>
+              <p class="results">${exercisez.name}</p>
             </div>
             <div class="col">
-              <p class="text-dark">${exercisez.muscle}</p>
+              <p class="results">${exercisez.muscle}</p>
 
             </div>
             <div class="col">
-              <p class="text-dark">${exercisez.equipment}</p>
+              <p class="results">${exercisez.equipment}</p>
 
             </div>
 
             <div class="col">
-              <p class="text-dark">${exercisez.level}</p>
+              <p class="results">${exercisez.level}</p>
             </div>
           </div>`);
           $("#mainArea").append(newRow);

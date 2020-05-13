@@ -4,7 +4,7 @@ $(document).ready(function() {
   const getExercises = () => {
     // console.log("get the exercise!");
     $.get("/api/findExercises").then(function(data) {
-      console.log(data, "<=====");
+      // console.log(data, "<=====");
       if (data) {
         data.forEach(exercisez => {
           const newRow = $("<div>").addClass("row");

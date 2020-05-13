@@ -13,6 +13,7 @@ body {
 nav { 
   background-color: rgb(61, 166, 252);
   border-bottom: 2.5px solid rgba(248, 190, 82, 0.842);
+  font-family: 'Bitter', serif;
   font-size: 24px;
   color: white;
   margin-bottom: 15px;

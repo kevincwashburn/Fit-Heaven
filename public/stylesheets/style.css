@@ -4,14 +4,14 @@ form.login {
 }
 
 body { 
-  background-color: white(228, 227, 253);
+  background-color: #1C2321;
   text-align: center;
   color:rgb(61, 166, 252);
 }
 
 
 nav { 
-  background-color: rgb(61, 166, 252);
+  background-color: #37323E;
   border-bottom: 2.5px solid rgba(248, 190, 82, 0.842);
   font-family: 'Bitter', serif;
   font-size: 24px;

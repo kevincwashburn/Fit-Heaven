@@ -57,10 +57,17 @@ body{
 
 }
 
+.form-group {
+  font-family: 'Francois One', sans-serif;
+}
+
 h2{
+  font-family: 'Francois One', sans-serif;
   font-size: x-large;
 }
 
 p{
+  font-family: 'Francois One', sans-serif;
   font-size: large;
 }
+

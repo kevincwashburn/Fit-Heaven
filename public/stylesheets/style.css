@@ -31,6 +31,7 @@ nav {
   background-color: whitesmoke;
   width: 45%;
   margin: auto;
+  margin-bottom: 25px;
   border-radius: 5%;
   border: 2px solid rgb(255, 231, 187);
   color: black;
@@ -47,6 +48,7 @@ nav {
 .footer{
   color: #477998;;
   text-align: center;
+  /* margin: 15px 0px 0px 0px; */
 }
 
 .form-group {

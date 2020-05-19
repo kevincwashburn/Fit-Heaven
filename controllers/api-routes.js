@@ -50,7 +50,7 @@ module.exports = function(app) {
         // Otherwise send back the user's email and id
         // Sending back a password, even a hashed password, isn't a good idea
         .then(foundUser => {
-          console.log(foundUser);
+          // console.log(foundUser);
           res.json({
             email: foundUser.dataValues.email,
             gender: foundUser.dataValues.gender,
@@ -68,7 +68,7 @@ module.exports = function(app) {
   });
 
   app.put("/api/user_data", function(req, res) {
-    console.log(req.user.id);
+    // console.log(req.user.id);
     db.User.update(req.body, {
       where: {
         id: req.user.id
@@ -84,7 +84,7 @@ module.exports = function(app) {
         id: req.user.id
       }
     }).then(results => {
-      console.log(results);
+      // console.log(results);
       if (!results.dataValues.level) {
         res.json({});
       } else {
@@ -95,7 +95,7 @@ module.exports = function(app) {
             equipment: results.dataValues.equipment
           }
         }).then(arrayOfExercises => {
-          console.log(arrayOfExercises);
+          // console.log(arrayOfExercises);
           res.json(arrayOfExercises);
         });
       }

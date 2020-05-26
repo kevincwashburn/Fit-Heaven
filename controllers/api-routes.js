@@ -84,7 +84,6 @@ module.exports = function(app) {
         id: req.user.id
       }
     }).then(results => {
-      // console.log(results);
       if (!results.dataValues.level) {
         res.json({});
       } else {
@@ -92,10 +91,12 @@ module.exports = function(app) {
           where: {
             muscle: results.dataValues.muscle,
             level: results.dataValues.level,
+            equipment: results.dataValues.equipment,
+            equipment: results.dataValues.equipment,
+            equipment: results.dataValues.equipment,
             equipment: results.dataValues.equipment
           }
         }).then(arrayOfExercises => {
-          // console.log(arrayOfExercises);
           res.json(arrayOfExercises);
         });
       }

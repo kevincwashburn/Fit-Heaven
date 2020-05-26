@@ -181,18 +181,15 @@
   <script>
 
     let answers = [];
+    let equipArray = [];
 
     $(".btn-gender").click(function (event) {
       event.preventDefault();
       $(".first").hide();
       $(".second").show();
-
-
-      answers.push(this.innerText);
-
-      console.log(answers);
-
-    })
+      // answers.push(this.innerText);
+      answers.splice(0, 0, this.innerText);
+    });
 
     $(".btn-weight").click(function (event) {
       event.preventDefault();
@@ -207,9 +204,11 @@
         $(".third").hide();
         $(".second").show();
       } else {
-        answers.push(x);
+        // answers[0].push(x);
+        answers.splice(1, 0, x);
+        // console.log(answers);
       }
-    })
+    });
 
     $(".btn-equip").click(function (event) {
       event.preventDefault();
@@ -221,36 +220,29 @@
       let atLeastOneIsChecked = $("input:checkbox").is(":checked");
 
       let bodyweight = $('input[name="bodyweight"]:checked').serialize();
-      console.log(bodyweight);
       let dumbbell = $('input[name="dumbbell"]:checked').serialize();
       let barbell = $('input[name="barbell"]:checked').serialize();
       let cableMachine = $('input[name="cable/machine"]:checked').serialize();
 
       if (atLeastOneIsChecked === true) {
         if (bodyweight != "") {
-
-          answers.push("bodyweight");
+          equipArray.push("bodyweight");
         }
-
         if (dumbbell != "") {
-
-          answers.push("dumbbell");
+          equipArray.push("dumbbell");
         }
-
         if (barbell != "") {
-
-          answers.push("barbell");
+          equipArray.push("barbell");
         }
-
         if (cableMachine != "") {
-          answers.push("cable/machine");
+          equipArray.push("cable/machine");
         }
       } else {
         $("#selectAtLeastOne").show();
         $(".fourth").hide();
         $(".third").show();
       }
-    })
+    });
 
     $(".btn-level").click(function (event) {
       event.preventDefault();
@@ -260,9 +252,9 @@
       $(".fourth").hide();
       $(".fifth").show();
 
-      console.log(this.innerText);
-      answers.push(this.innerText);
-
+      // console.log(this.innerText);
+      // answers.push(this.innerText);
+      answers.splice(2, 0, this.innerText);
       console.log(answers);
     })
 
@@ -275,9 +267,6 @@
       $(".fifth").hide();
       $(".sixth").show();
 
-
-
-
       let chest = $('input[name="chest"]:checked').serialize();
       let back = $('input[name="back"]:checked').serialize();
       let legs = $('input[name="legs"]:checked').serialize();
@@ -286,106 +275,95 @@
       let triceps = $('input[name="triceps"]:checked').serialize();
       let abs = $('input[name="abs"]:checked').serialize();
 
-
-
-
       let atLeastOneIsChecked = $("input:checked").length;
-      console.log(atLeastOneIsChecked);
+      // console.log(atLeastOneIsChecked);
 
       if (atLeastOneIsChecked > 1) {
-
         if (chest != "") {
-
           answers.push("chest");
+          // answers.splice(7, 0, "chest");
+          // console.log(answers);
         }
-
         if (back != "") {
-
           answers.push("back");
+          // answers.splice(8, 0, "back");
+          // console.log(answers);
         }
-
         if (legs != "") {
-
           answers.push("legs");
+          // answers.splice(9, 0, "legs");
+          // console.log(answers);
         }
-
         if (shoulders != "") {
           answers.push("shoulders");
+          // answers.splice(10, 0, "shoulders");
+          // console.log(answers);
         }
-
         if (biceps != "") {
-
           answers.push("biceps");
+          // answers.splice(11, 0, "biceps");
+          // console.log(answers);
         }
-
         if (triceps != "") {
-
           answers.push("triceps");
+          // answers.splice(12, 0, "triceps");
+          // console.log(answers);
         }
-
         if (abs != "") {
           answers.push("abs");
+          // answers.splice(13, 0, "abs");
+          // console.log(answers);
         }
-
       } else {
         $("#selectAtLeastOneMuscle").show();
         $(".sixth").hide();
         $(".fifth").show();
-
       }
-
-
-
-
-
-    })
+    });
 
     function updateUser() {
-      console.log({
-        gender: answers[0],
-        level: answers[3],
-        weight: answers[1]
-      });
       $.ajax({
         method: "PUT",
         url: "/api/user_data",
         data: {
           gender: answers[0],
-          level: answers[3],
           weight: answers[1],
-          muscle: answers[4],
-          equipment: answers[2]
+          level: answers[2],
+          muscle: answers[3],
+          equipment: equipArray[0],
+          equipment: equipArray[1],
+          equipment: equipArray[2],
+          equipment: equipArray[3]
         }
       }).then(() => {
         window.location.href = './members.html';
-
       })
-    }
+    };
+
 
     $(".btn-end").click(function (event) {
       event.preventDefault();
-
-
       updateUser();
-
-    })
+    });
 
 
     $(".btn-muscle").click(event => {
       event.preventDefault();
-
       $.ajax({
         type: "GET",
         url: "/api/findExercises",
         data: {
-          level: answers[3],
-          muscle: answers[4],
-          equipment: answers[2]
+          level: answers[2],
+          muscle: answers[3],
+          equipment: equipArray[0],
+          equipment: equipArray[1],
+          equipment: equipArray[2],
+          equipment: equipArray[3]
         }
       }).then(data => {
         console.log(data);
       })
-    })
+    });
 
 
   </script>

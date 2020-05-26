@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     equipment: {
       type: DataTypes.STRING(20),
-      allowNull: false
+      allowNull: true
     }
   });
   return Exercises;

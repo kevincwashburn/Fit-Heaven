@@ -1,6 +1,6 @@
 
   # Fit Heaven
-![Fit heaven screen shot](./public/images/main.jpg)
+![Fit heaven screen shot](./public/images/main.png)
 
 ### Link To Deployed Site
 https://exercise-fullstack-app.herokuapp.com/

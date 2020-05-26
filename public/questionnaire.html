@@ -181,14 +181,15 @@
   <script>
 
     let answers = [];
-    let equipArray = [];
+    let equipmentAnswers = [];
+    let muscleAnswers = [];
 
     $(".btn-gender").click(function (event) {
       event.preventDefault();
       $(".first").hide();
       $(".second").show();
-      // answers.push(this.innerText);
-      answers.splice(0, 0, this.innerText);
+      answers.push(this.innerText);
+      // console.log(answers);
     });
 
     $(".btn-weight").click(function (event) {
@@ -204,9 +205,7 @@
         $(".third").hide();
         $(".second").show();
       } else {
-        // answers[0].push(x);
-        answers.splice(1, 0, x);
-        // console.log(answers);
+        answers.push(x);
       }
     });
 
@@ -226,16 +225,16 @@
 
       if (atLeastOneIsChecked === true) {
         if (bodyweight != "") {
-          equipArray.push("bodyweight");
+          equipmentAnswers.push("bodyweight");
         }
         if (dumbbell != "") {
-          equipArray.push("dumbbell");
+          equipmentAnswers.push("dumbbell");
         }
         if (barbell != "") {
-          equipArray.push("barbell");
+          equipmentAnswers.push("barbell");
         }
         if (cableMachine != "") {
-          equipArray.push("cable/machine");
+          equipmentAnswers.push("cable/machine");
         }
       } else {
         $("#selectAtLeastOne").show();
@@ -251,11 +250,9 @@
       $(".third").hide();
       $(".fourth").hide();
       $(".fifth").show();
-
       // console.log(this.innerText);
-      // answers.push(this.innerText);
-      answers.splice(2, 0, this.innerText);
-      console.log(answers);
+      answers.push(this.innerText);
+      // console.log(answers);
     })
 
     $(".btn-muscle").click(function (event) {
@@ -280,48 +277,42 @@
 
       if (atLeastOneIsChecked > 1) {
         if (chest != "") {
-          answers.push("chest");
-          // answers.splice(7, 0, "chest");
-          // console.log(answers);
+          muscleAnswers.push("chest");
         }
         if (back != "") {
-          answers.push("back");
-          // answers.splice(8, 0, "back");
-          // console.log(answers);
+          muscleAnswers.push("back");
         }
         if (legs != "") {
-          answers.push("legs");
-          // answers.splice(9, 0, "legs");
-          // console.log(answers);
+          muscleAnswers.push("legs");
         }
         if (shoulders != "") {
-          answers.push("shoulders");
-          // answers.splice(10, 0, "shoulders");
-          // console.log(answers);
+          muscleAnswers.push("shoulders");
         }
         if (biceps != "") {
-          answers.push("biceps");
-          // answers.splice(11, 0, "biceps");
-          // console.log(answers);
+          muscleAnswers.push("biceps");
         }
         if (triceps != "") {
-          answers.push("triceps");
-          // answers.splice(12, 0, "triceps");
-          // console.log(answers);
+          muscleAnswers.push("triceps");
         }
         if (abs != "") {
-          answers.push("abs");
-          // answers.splice(13, 0, "abs");
-          // console.log(answers);
+          muscleAnswers.push("abs");
         }
+
       } else {
         $("#selectAtLeastOneMuscle").show();
         $(".sixth").hide();
         $(".fifth").show();
+
       }
     });
 
     function updateUser() {
+      // console.log({
+      //   gender: answers[0],
+      //   level: answers[3],
+      //   weight: answers[1]
+      // });
+
       $.ajax({
         method: "PUT",
         url: "/api/user_data",
@@ -329,46 +320,52 @@
           gender: answers[0],
           weight: answers[1],
           level: answers[2],
-          muscle: answers[3],
-          equipment: equipArray[0],
-          equipment: equipArray[1],
-          equipment: equipArray[2],
-          equipment: equipArray[3]
+          muscle: muscleAnswers[0]
+          // equipment: equipmentAnswers
+        },
+        success: function (data) {
+          for (let i = 0; i < equipmentAnswers.length; i++) {
+            $.ajax({
+              method: "PUT",
+              url: "/api/user_data",
+              data: {
+                equipment: equipmentAnswers[i]
+              }
+            })
+          }
         }
       }).then(() => {
         window.location.href = './members.html';
-      })
-    };
 
+      })
+    }
 
     $(".btn-end").click(function (event) {
       event.preventDefault();
       updateUser();
     });
 
-
     $(".btn-muscle").click(event => {
       event.preventDefault();
+
       $.ajax({
         type: "GET",
         url: "/api/findExercises",
         data: {
           level: answers[2],
-          muscle: answers[3],
-          equipment: equipArray[0],
-          equipment: equipArray[1],
-          equipment: equipArray[2],
-          equipment: equipArray[3]
+          muscle: muscleAnswers[0],
+          equipment: equipmentAnswers[0],
+          equipment: equipmentAnswers[1]
+          // ^this needs to be re-written to account for the equipment loop...
+          // as in: this entire ajax request needs to be moved underneath the 
+          // success of the equipment ajax
         }
       }).then(data => {
         console.log(data);
       })
     });
 
-
   </script>
-
-
 </body>
 
 </html>

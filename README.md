@@ -10,6 +10,8 @@ https://exercise-fullstack-app.herokuapp.com/
 ## Description 
  
   It's a gym app that, after you login/signup,you can create a profile and a workout with a simple questionnaire. Our questionnaire allows you to build a workout based on the equipment you have available, your fitness level and the muscle group(s) you want to work. 
+  
+https://exercise-fullstack-app.herokuapp.com/
 
 ## Table of Contents 
  
